@@ -79,7 +79,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel
+                    Donar Módulo Web
                 </div>
 
                 <div class="links">
