@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Models\Hemocentro;
 
 class User extends Authenticatable
 {
@@ -18,6 +19,7 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
+    
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -26,4 +28,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function usuarioHemocentro()
+    {
+        return $this->hasOne(Hemocentro::class); 
+    }
 }

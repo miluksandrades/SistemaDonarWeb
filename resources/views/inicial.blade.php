@@ -187,11 +187,12 @@
             </div>
             <!-- Final do login de usuário -->
             <!-- Início cadastro do hemocentro -->
-             <div class="section section-signup" id="#signup-section"style="background-image: url('img/bg11.jpg'); background-size: cover; background-position: top center; min-height: 700px;">
+            
+         
+            <div class="section section-signup" id="#signup-section"style="background-image: url('img/bg11.jpg'); background-size: cover; background-position: top center; min-height: 700px;">
                 <div class="container">
                     <div class="row">
                         <div class="card" data-background-color="orange">
-                            <form class="form" method="" action="">
                                 <div class="header text-center">
                                     <h4 class="title title-up">Cadastro do hemocentro</h4>
                                     <div class="social-line">
@@ -201,38 +202,117 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <div class="input-group form-group-no-border">
-                                        <span class="input-group-addon">
-                                            <i class="now-ui-icons ui-1_email-85"></i>
-                                        </span>
-                                        <input type="email" class="form-control" placeholder="Email">
-                                    </div>
-                                    <div class="input-group form-group-no-border">
-                                        <span class="input-group-addon">
-                                            <i class="now-ui-icons ui-1_lock-circle-open"></i>
-                                        </span>
-                                        <input type="password" class="form-control" placeholder="Senha">
-                                    </div>
+                                    <form method="POST" action="{{ route('register') }}">
+                                        @csrf
+                                        
+                                        Dados do Responsável
+                                        <div class="input-group form-group-no-border">
+                                            <span class="input-group-addon">
+                                                    <!-- Icone-->
+                                            </span>                                            
+                                            <input  type="text" placeholder="Nome" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
 
-                                    <!-- If you want to add a checkbox to this form, uncomment this code -->
-                                    <!-- <div class="checkbox">
-                                    <input id="checkboxSignup" type="checkbox">
-                                        <label for="checkboxSignup">
-                                        Unchecked
-                                        </label>
-                                    </div> -->
+                                                @if ($errors->has('name'))
+                                                    <span class="invalid-feedback">
+                                                        <strong>{{ $errors->first('name') }}</strong>
+                                                    </span>
+                                                @endif
+                                       
+                                        </div>
+
+                                        <div class="input-group form-group-no-border">
+                                            <span class="input-group-addon">
+                                                <i class="now-ui-icons ui-1_email-85"></i>
+                                            </span> 
+                                                <input type="email" placeholder="{{ __('Email')}}" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+
+                                                @if ($errors->has('email'))
+                                                    <span class="invalid-feedback">
+                                                        <strong>{{ $errors->first('email') }}</strong>
+                                                    </span>
+                                                @endif
+                                            
+                                        </div>
+                                        <div class="input-group form-group-no-border">
+                                            <span class="input-group-addon">
+                                                <i class="now-ui-icons ui-1_lock-circle-open"></i>
+                                            </span> 
+                                                <input id="password" type="password" placeholder="{{ __('Senha')}}" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+
+                                                @if ($errors->has('password'))
+                                                    <span class="invalid-feedback">
+                                                        <strong>{{ $errors->first('password') }}</strong>
+                                                    </span>
+                                                @endif
+                                            
+                                        </div>
+
+                                        <div class="input-group form-group-no-border">
+                                            <span class="input-group-addon">
+                                                <i class="now-ui-icons ui-1_lock-circle-open"></i>
+                                            </span> 
+                                                <input id="password-confirm" type="password" placeholder="{{ __('Confirmar Senha')}}" class="form-control" name="password_confirmation" required>
+                                            
+                                        </div>  
+                                        
+                                        <br/>
+                                              Dados do Hemocentro                                   
+                                        <div class="input-group form-group-no-border">
+                                            <span class="input-group-addon">
+                                       
+                                            </span>
+                                            <input type="text" id="name" class="form-control" placeholder="{{ __('Nome Hemocentro') }}"  name="name_hemocentro" required>
+                                        </div>
+                                        
+                                        <div class="input-group form-group-no-border">
+                                            <span class="input-group-addon">
+                                           
+                                            </span>
+                                            <input type="text"  id= "telefone" class="form-control" placeholder="Telefone"  name="phone" required>
+                                        </div>
+                                        <div class="input-group form-group-no-border">
+                                            <span class="input-group-addon">
+                                            <!-- Icone-->
+                                            </span>
+                                            <input type="text" id ="endereco" class="form-control" placeholder="Endereço" name="address" required>
+                                        </div>
+                                        <div class="input-group form-group-no-border">
+                                            <span class="input-group-addon">
+                                            <!-- Icone-->
+                                            </span>
+                                            <input type="text" class="form-control" placeholder="Estado" name="estate" required>
+                                        </div>
+                                        <div class="input-group form-group-no-border">
+                                            <span class="input-group-addon">
+                                            <!-- Icone-->
+                                            </span>
+                                            <input type="text" class="form-control" placeholder="Cidade" name="city" required>
+                                        </div>
+                                        <!--
+                                        <div class="input-group form-group-no-border">
+                                            <span class="input-group-addon">
+                                            <!-- Icone>
+                                            </span>
+                                            <input type="text" class="form-control" placeholder="Nome Responsável" name="user" required>
+                                        </div>-->
+                                        <div class="footer text-center">
+                                            <button type="submit" class="btn btn-neutral btn-round btn-lg">
+                                            Cadastrar
+                                            </button>
+                                        </div> 
+                                        <!-- If you want to add a checkbox to this form, uncomment this code -->
+                                        <!-- <div class="checkbox">
+                                        <input id="checkboxSignup" type="checkbox">
+                                            <label for="checkboxSignup">
+                                            Unchecked
+                                        </div>--> 
+                                    </form>
                                 </div>
-                                <div class="footer text-center">
-                                    <a href="#pablo" class="btn btn-neutral btn-round btn-lg">Entrar</a>
-                                </div>
-                            </form>
                         </div>
                     </div>
-                    <!-- Final do cadastro de hemocentro -->
-                </div>
-            </div>
-
-        </div>
+                </div> 
+            </div>    
+                                                                                
         <!-- Sart Modal -->
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -257,7 +337,7 @@
         <!--  End Modal -->
         <!-- Mini Modal -->
         <div class="modal fade modal-mini modal-primary" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog">fg
                 <div class="modal-content">
                     <div class="modal-header justify-content-center">
                         <div class="modal-profile">
@@ -277,7 +357,7 @@
         <!--  End Modal -->
         <footer class="footer" data-background-color="black">
             <div class="container">
-                <nav>
+                <nav> 
                     <ul>
                         <li>
                             <a href="https://www.creative-tim.com">

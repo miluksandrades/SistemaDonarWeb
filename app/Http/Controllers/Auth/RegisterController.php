@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use App\Models\Hemocentro;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
@@ -52,6 +54,11 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
+            'name_hemocentro' => 'required|string',
+            'phone' => 'required|string',
+            'address' => 'required|string',
+            'estate' => 'required|string',
+            'city' => 'required|string',
         ]);
     }
 
@@ -63,10 +70,33 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        if ($user == null)
+        {
+            return null;
+        }
+
+       $hemocentro =  Hemocentro::create([
+            'name' => $data['name_hemocentro'],
+            'user' => $user->id,
+            'phone' => $data['phone'],
+            'address' => $data['address'],
+            'estate' => $data['estate'],
+            'city' => $data['city'],
+        ]);
+
+        if($hemocentro  == null){
+
+            return null;
+        }
+        
+        return $user;
     }
+   
+
 }

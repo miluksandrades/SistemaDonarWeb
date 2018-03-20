@@ -15,6 +15,13 @@
                     @endif
 
                     You are logged in!
+                    <br/>
+                    Hemocentro: {{$hemocentro->name}}<br/>
+                    Telefone: {{$hemocentro->phone}}<br/>
+                    Endereço: {{$hemocentro->address}}<br/>
+                    Estado: {{$hemocentro->estate}}<br/>
+                    Cidade: {{$hemocentro->city}}
+                    <br/><br/>
                 </div>
             </div>
         </div>
