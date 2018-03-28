@@ -27,7 +27,7 @@ class DashboardController extends Controller
     {
         $hemocentro = Hemocentro::where('user', Auth::id())->first();
        
-        return view('dashboard', ['hemocentro'=>$hemocentro]);
+        return view('hemocentro.dashboard', ['hemocentro'=>$hemocentro]);
     }
 
     

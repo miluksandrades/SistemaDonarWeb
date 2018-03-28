@@ -17,4 +17,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::prefix('/hemocentro/')->name('hemocentro.')->group(function () {
+    Route::get('dashboard', 'DashboardController@index')->name('dashboard');
+
+    Route::get('profile', 'HemocentroController@index')->name('profile');
+    Route::post('profile/edit', 'HemocentroController@edit')->name('profile.edit');
+
+    Route::get('user/profile', 'UserController@profile')->name('user.profile');
+    Route::get('user/profile/edit', 'UserController@edit')->name('user.profile.edit');
+});

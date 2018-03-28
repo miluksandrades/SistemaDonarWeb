@@ -17,9 +17,10 @@ class CreateHemocentrosTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('phone');
-            $table->string('address');
-            $table->string('estate');
+            $table->string('email');
+            $table->string('state');
             $table->string('city');
+            $table->string('address');
             $table->integer('user')->unsigned();
             $table->foreign('user')->references('id')->on('users');
             $table->engine = 'InnoDB';

@@ -6,19 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Hemocentro extends Model
 {
-    
-
     protected $table = 'hemocentros';
+    
     protected $fillable = [
-        'name',
-        'email',
-        'password', 
-        'phone',
-        'address',
-        'estate', 
-        'city',
-        'user',
+        'name', 'email', 'phone', 'state', 'city', 'address', 'user'
     ];
-
-     //public $timestamps = false;
 }
