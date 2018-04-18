@@ -238,11 +238,11 @@
                                             <span class="input-group-addon">
                                                 <i class="now-ui-icons ui-1_lock-circle-open"></i>
                                             </span> 
-                                                <input id="cad_password" type="password" placeholder="{{ __('Senha')}}" class="form-control{{ $errors->has('password_cad') ? ' is-invalid' : '' }}" name="password">
+                                                <input id="password_hemocentro" type="password" placeholder="{{ __('Senha')}}" class="form-control{{ $errors->has('password_hemocentro') ? ' is-invalid' : '' }}" name="password_hemocentro">
 
-                                                @if ($errors->has('password_cad'))
+                                                @if ($errors->has('password_hemocentro'))
                                                     <span class="invalid-feedback">
-                                                        <strong>{{ $errors->first('password_cad') }}</strong>
+                                                        <strong>{{ $errors->first('password_hemocentro') }}</strong>
                                                     </span>
                                                 @endif
                                             
@@ -252,7 +252,7 @@
                                             <span class="input-group-addon">
                                                 <i class="now-ui-icons ui-1_lock-circle-open"></i>
                                             </span> 
-                                                <input id="password-confirm" type="password" placeholder="{{ __('Confirmar Senha')}}" class="form-control" name="password_confirmation">
+                                                <input id="password-confirm" type="password" placeholder="{{ __('Confirmar Senha')}}" class="form-control" name="password_hemocentro_confirmation">
                                             
                                         </div>  
                                         
@@ -277,6 +277,21 @@
                                             </span>
                                             <input type="text" id ="endereco" class="form-control" placeholder="Endereço" name="address" required>
                                         </div>
+
+                                          <div class="input-group form-group-no-border">
+                                            <span class="input-group-addon">
+                                                <i class="now-ui-icons ui-1_email-85"></i>
+                                            </span> 
+                                                <input type="email" placeholder="Email do Hemocentro" class="form-control{{ $errors->has('email_hemocentro') ? ' is-invalid' : '' }}" name="email_hemocentro" value="{{ old('email_hemocentro') }}" required>
+
+                                                @if ($errors->has('email_hemocentro'))
+                                                    <span class="invalid-feedback">
+                                                        <strong>{{ $errors->first('email_hemocentro') }}</strong>
+                                                    </span>
+                                                @endif
+                                            
+                                            </div>
+
                                         <div class="input-group form-group-no-border">
                                             <span class="input-group-addon">
                                             <!-- Icone-->
