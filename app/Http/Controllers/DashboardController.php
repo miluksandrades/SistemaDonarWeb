@@ -15,6 +15,8 @@ class DashboardController extends Controller
      */
     public function __construct()
     {
+        echo 'dashboard';
+        exit;
         $this->middleware('auth');
     }
 

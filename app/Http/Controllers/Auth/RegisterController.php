@@ -30,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/dashboard';
+    protected $redirectTo = '/hemocentro/dashboard';
 
     /**
      * Create a new controller instance.
@@ -55,9 +55,9 @@ class RegisterController extends Controller
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
             'name_hemocentro' => 'required|string',
-            'phone' => 'required|string',
+            'phone' => 'required|numeric',
             'address' => 'required|string',
-            'estate' => 'required|string',
+            'state' => 'required|string',
             'city' => 'required|string',
         ]);
     }
@@ -86,7 +86,7 @@ class RegisterController extends Controller
             'user' => $user->id,
             'phone' => $data['phone'],
             'address' => $data['address'],
-            'estate' => $data['estate'],
+            'state' => $data['state'],
             'city' => $data['city'],
         ]);
 

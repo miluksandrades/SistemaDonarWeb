@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
     <meta charset="utf-8">
@@ -10,14 +9,16 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!--     Fonts and icons     -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" />
 
-    <!-- Styles -->
-    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/now-ui-kit.css?v=1.1.0') }}" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}"/>
+  <link rel="stylesheet" href="{{ asset('css/now-ui-kit.css?v=1.1.0') }}"/>
+
+
+
 </head>
+
 <body class="index-page sidebar-collapse">
     <!-- Navbar -->
     <div class=" section-top" id="#top-section">
@@ -237,11 +238,11 @@
                                             <span class="input-group-addon">
                                                 <i class="now-ui-icons ui-1_lock-circle-open"></i>
                                             </span> 
-                                                <input id="password" type="password" placeholder="{{ __('Senha')}}" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                                                <input id="cad_password" type="password" placeholder="{{ __('Senha')}}" class="form-control{{ $errors->has('password_cad') ? ' is-invalid' : '' }}" name="password">
 
-                                                @if ($errors->has('password'))
+                                                @if ($errors->has('password_cad'))
                                                     <span class="invalid-feedback">
-                                                        <strong>{{ $errors->first('password') }}</strong>
+                                                        <strong>{{ $errors->first('password_cad') }}</strong>
                                                     </span>
                                                 @endif
                                             
@@ -251,7 +252,7 @@
                                             <span class="input-group-addon">
                                                 <i class="now-ui-icons ui-1_lock-circle-open"></i>
                                             </span> 
-                                                <input id="password-confirm" type="password" placeholder="{{ __('Confirmar Senha')}}" class="form-control" name="password_confirmation" required>
+                                                <input id="password-confirm" type="password" placeholder="{{ __('Confirmar Senha')}}" class="form-control" name="password_confirmation">
                                             
                                         </div>  
                                         
@@ -280,7 +281,7 @@
                                             <span class="input-group-addon">
                                             <!-- Icone-->
                                             </span>
-                                            <input type="text" class="form-control" placeholder="Estado" name="estate" required>
+                                            <input type="text" class="form-control" placeholder="Estado" name="state" required>
                                         </div>
                                         <div class="input-group form-group-no-border">
                                             <span class="input-group-addon">
@@ -392,20 +393,21 @@
             </div>
         </footer>
     </div>
+</body>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/core/jquery.3.2.1.min.js') }}"></script>
-    <script src="{{ asset('js/core/popper.min.js') }}"></script>
-    <script src="{{ asset('js/core/bootstrap.min.js') }}"></script>
-    <script src="{{ asset('js/plugins/bootstrap-switch.js') }}"></script>
-    <script src="{{ asset('js/plugins/nouislider.min.js') }}"></script>
-    <script src="{{ asset('js/now-ui-kit.js?v=1.1.0') }}"></script>
+<!-- jQuery 3 -->
+<script src="{{asset('js/jquery.3.2.1.min.js')}}"></script>
+<script src="{{asset('js/popper.min.js')}}"></script>
+<script src="{{asset('js/bootstrap.min.js')}}"></script>
+<script src="{{asset('js/bootstrap-switch.js')}}"></script>
+<script src="{{asset('js/nouislider.min.js')}}"></script>
+<script src="{{asset('js/now-ui-kit.js?v=1.1.0')}}"></script>
 
 <!-- Control Center for Now Ui Kit: parallax effects, scripts for the example pages etc -->
 <script type="text/javascript">
-    $(document).ready(function() {
+$(document).ready(function() {
         // the body of this function is in assets/js/now-ui-kit.js
-        nowuiKit.initSliders();
+       // nowuiKit.initSliders();
     });
 
     function scrollToDownload() {
@@ -444,5 +446,5 @@
         }
     }
 </script>
-</body>
+
 </html>
