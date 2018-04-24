@@ -20,7 +20,7 @@ class UserController extends Controller
 
     public function profile()
     {
-        return view('hemocentro.user.profile', ['user'=> Auth::user()]);
+        return view('hemocentro.user_profile', ['user'=> Auth::user()]);
     }
 
     public function edit(Request $request)

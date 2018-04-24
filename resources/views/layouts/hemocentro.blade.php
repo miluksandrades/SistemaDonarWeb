@@ -18,12 +18,13 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{asset('vendor/font-awesome/css/font-awesome.min.css')}}">
     <!-- Ionicons -->
-    <link rel="stylesheet" href="{{asset('css/ionicons.min.css')}}">
+    <link rel="stylesheet" href="{{asset('vendor/ionicons/css/ionicons.min.css')}}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('css/AdminLTE.min.css')}}">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
         folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{asset('css/_all-skins.min.css')}}">
+    <link rel="stylesheet" href="{{asset('vendor/HemantNegi-jquery.sumoselect-a1d8d68/sumoselect.min.css')}}">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -168,9 +169,17 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
 
+        <li>
+    <a href="{{route('hemocentro.dashboard')}}">
+      <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+      <span class="pull-right-container">
+      </span>
+    </a>	
+   </li>
+
        <li>
     <a href="{{route('hemocentro.profile')}}">
-      <i class="fa fa-dashboard"></i> <span>Hemocentro</span>
+      <i class="fa fa-h-square"></i> <span>Hemocentro</span>
       <span class="pull-right-container">
       </span>
     </a>	
@@ -179,11 +188,27 @@
 
     <li>
     <a href="{{route('hemocentro.user.profile')}}">
-      <i class="fa fa-dashboard"></i> <span>Minha conta</span>
+      <i class="glyphicon glyphicon-user"></i> <span>Minha conta</span>
       <span class="pull-right-container">
       </span>
     </a>	
    </li>
+
+   <li>
+        <a href="{{route('hemocentro.campaigns')}}">
+          <i class="glyphicon glyphicon-fire"></i> <span>Campanhas</span>
+          <span class="pull-right-container">
+          </span>
+        </a>  
+       </li>
+
+        <li>
+        <a href={{route('hemocentro.donations.register')}}>
+          <i class="fa fa-plus-square-o"></i> <span>Registrar Doação</span>
+          <span class="pull-right-container">
+          </span>
+        </a>  
+       </li>
 
       </ul>
     </section>
@@ -203,8 +228,9 @@
         <li class="active">Dashboard</li>
       </ol> -->
     </section>
-
+      
     <!-- Main content -->
+    @yield('site-content')
     
     <!-- /.content -->
   </div>
@@ -213,7 +239,7 @@
     <div class="pull-right hidden-xs">
       <b>Version</b> 2.4.0
     </div>
-    <strong>Copyright &copy; 2017-2018 <a href="https://adminlte.io">EquipeSixTI</a>.</strong> All rights
+    <strong>Copyright &copy; 2017-2018 <a href="https://adminlte.io"></a>.</strong> All rights
     reserved.
   </footer>
 
@@ -404,6 +430,8 @@
         </form>
       </div>
       <!-- /.tab-pane -->
+
+
     </div>
   </aside>
   <!-- /.control-sidebar -->
@@ -414,7 +442,7 @@
 <!-- ./wrapper -->
 
 <!-- jQuery 3 -->
-<script src="{{asset('js/jquery.min.js')}}"></script>
+<script src="{{asset('js/jquery.3.2.1.min.js')}}"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="{{asset('js/jquery-ui.min.js')}}"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -441,5 +469,7 @@
 <script src="{{asset('js/dashboard.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{asset('js/demo.js')}}"></script>
+<script src="{{asset('vendor/HemantNegi-jquery.sumoselect-a1d8d68/jquery.sumoselect.min.js')}}"></script>
+<script> $(function(){$('#tipo-sangue').SumoSelect();});</script>
 </body>
 </html>

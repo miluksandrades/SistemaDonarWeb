@@ -25,4 +25,8 @@ Route::prefix('/hemocentro/')->name('hemocentro.')->group(function () {
 
     Route::get('user/profile', 'UserController@profile')->name('user.profile');
     Route::get('user/profile/edit', 'UserController@edit')->name('user.profile.edit');
+
+    Route::get('campaigns', 'CampaignController@index')->name('campaigns');
+
+    Route::get('donations.register', 'DonationController@register')->name('donations.register');
 });
