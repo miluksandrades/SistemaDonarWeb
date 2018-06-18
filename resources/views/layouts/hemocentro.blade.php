@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{asset('vendor/ionicons/css/ionicons.min.css')}}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('css/AdminLTE.min.css')}}">
+    <link rel="stylesheet" href="{{asset('css/style.css')}}">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
         folder instead of downloading all of them to reduce the load. -->
     <link rel="stylesheet" href="{{asset('css/_all-skins.min.css')}}">
@@ -217,6 +218,12 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
+    
+    @if(session()->has ('alert_layout') && session()->has ('alert_message'))
+        <div class="alert {{session('alert_layout')}}">
+          <strong>{{session('alert_message')}}</strong>
+        </div>
+    @endif
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>

@@ -1,5 +1,4 @@
 @extends('layouts.hemocentro')
-
 @section('title')
 Perfil do Hemocentro
 @endsection
@@ -20,74 +19,108 @@ Painel de Controle do Hemocentro
         <h3 class="box-title">Informações do hemocentro</h3>
       </div>
       <!--formulario usuarios -->
-      <div class="col-md-12">
+      <div class="col-md-13">
       <!-- general form elements -->
       <div class="box box-primary">
 
                 <!-- form start -->
-      <form role="form">
-        <div class="box-body">
+      <form role="form" method="POST" action="{{ route('hemocentro.profile.edit') }}">
+        @csrf
+        <div class="box-body">  
+        <input type="hidden" name="id" value="{{$hemocentro->id}}">                                                                                        
           <div class="form-group">
+          
             <label for="exampleInputEmail1">Hemocentro</label>
-            <input type="text" class="form-control" name="name" id="exampleInputHemocentro1" placeholder="Insira o nome hemocentro">
+            <input type="text" class="form-control" name="name" id="exampleInputHemocentro1"  placeholder="Insira o nome do Hemocentro" value="{{$hemocentro->name}}">
+            @if($errors->has('name'))
+                <span class="text-input-error">
+                    <strong>{{$errors->first('name')}}</strong>
+                </span>
+            @endif
           </div>
-           <div class="form-group">
+          <div class="form-group">
             <label for="exampleInputPassword1">Endereço</label>
-            <input type="text" class="form-control" name="address" id="exampleInputPassword1" placeholder="Insira o endereço onde se localiza o hemocentro">
+            <input type="text" class="form-control" name="address" id="exampleInputPassword1" placeholder="Insira o endereço onde se localiza o hemocentro" value="{{$hemocentro->address}}">
+            @if($errors->has('address'))
+                <span class="text-input-error">
+                    <strong>{{$errors->first('address')}}</strong>
+                </span>
+            @endif
           </div>
-          <div>
+          <div class="form-group">
             <label for="exampleInputEmail1">E-mail</label>
-            <input type="email" class="form-control" name="email" id="exampleInputEmail1" placeholder="Insira um email">
+            <input type="email" class="form-control" name="email" id="exampleInputEmail1" placeholder="Insira um email" value="{{$hemocentro->email}}">
+            @if($errors->has('email'))
+                <span class="text-input-error">
+                    <strong>{{$errors->first('email')}}</strong>
+                </span>
+            @endif
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Cidade</label>
-            <input type="text" class="form-control" name="city"  id="exampleInputPassword1" placeholder="Insira a cidade onde se localiza o hemocentro">
+            <input type="text" class="form-control" name="city"  id="exampleInputPassword1" placeholder="Insira a cidade onde se localiza o hemocentro" value="{{$hemocentro->city}}">
+            @if($errors->has('city'))
+                <span class="text-input-error">
+                    <strong>{{$errors->first('city')}}</strong>
+                </span>
+            @endif
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Estado</label>
-            <select name="state" >
-                  <option value="AC">Acre</option>
-                  <option value="AL">Alagoas</option>
-                  <option value="AP">Amapá</option>
-                  <option value="AM">Amazonas</option>
-                  <option value="BA">Bahia</option>
-                  <option value="CE">Ceará</option>
-                  <option value="DF">Distrito Federal</option>
-                  <option value="ES">Espírito Santo</option>
-                  <option value="GO" selected>Goiás</option>
-                  <option value="MA">Maranhão</option>
-                  <option value="MT">Mato Grosso</option>
-                  <option value="MS">Mato Grosso do Sul</option>
-                  <option value="MG">Minas Gerais</option>
-                  <option value="PA">Pará</option>
-                  <option value="PB">Paraíba</option>
-                  <option value="PR">Paraná</option>
-                  <option value="PE">Pernambuco</option>
-                  <option value="PI">Piauí</option>
-                  <option value="RJ">Rio de Janeiro</option>
-                  <option value="RN">Rio Grande do Norte</option>
-                  <option value="RS">Rio Grande do Sul</option>
-                  <option value="RO">Rondônia</option>
-                  <option value="RR">Roraima</option>
-                  <option value="SC">Santa Catarina</option>
-                  <option value="SP">São Paulo</option>
-                  <option value="SE">Sergipe</option>
-                  <option value="TO">Tocantins</option>
+          
+            <select name="state">
+                  <option {{$hemocentro->state == "AC" ? "selected" : ""}} value="AC">Acre</option>
+                  <option {{$hemocentro->state == "AL" ? "selected" : ""}} value="AL">Alagoas</option>
+                  <option {{$hemocentro->state == "AP" ? "selected" : ""}} value="AP">Amapá</option>
+                  <option {{$hemocentro->state == "AM" ? "selected" : ""}} value="AM">Amazonas</option>
+                  <option {{$hemocentro->state == "BA" ? "selected" : ""}} value="BA">Bahia</option>
+                  <option {{$hemocentro->state == "CE" ? "selected" : ""}} value="CE">Ceará</option>
+                  <option {{$hemocentro->state == "DF" ? "selected" : ""}} value="DF">Distrito Federal</option>
+                  <option {{$hemocentro->state == "ES" ? "selected" : ""}} value="ES">Espírito Santo</option>
+                  <option {{$hemocentro->state == "GO" ? "selected" : ""}} value="GO">Goiás</option>
+                  <option {{$hemocentro->state == "MA" ? "selected" : ""}} value="MA">Maranhão</option>
+                  <option {{$hemocentro->state == "MT" ? "selected" : ""}} value="MT">Mato Grosso</option>
+                  <option {{$hemocentro->state == "MS" ? "selected" : ""}} value="MS">Mato Grosso do Sul</option>
+                  <option {{$hemocentro->state == "MG" ? "selected" : ""}} value="MG">Minas Gerais</option>
+                  <option {{$hemocentro->state == "PA" ? "selected" : ""}} value="PA">Pará</option>
+                  <option {{$hemocentro->state == "PB" ? "selected" : ""}} value="PB">Paraíba</option>
+                  <option {{$hemocentro->state == "PR" ? "selected" : ""}} value="PR">Paraná</option>
+                  <option {{$hemocentro->state == "PE" ? "selected" : ""}} value="PE">Pernambuco</option>
+                  <option {{$hemocentro->state == "PI" ? "selected" : ""}} value="PI">Piauí</option>
+                  <option {{$hemocentro->state == "RJ" ? "selected" : ""}} value="RJ">Rio de Janeiro</option>
+                  <option {{$hemocentro->state == "RN" ? "selected" : ""}} value="RN">Rio Grande do Norte</option>
+                  <option {{$hemocentro->state == "RS" ? "selected" : ""}} value="RS">Rio Grande do Sul</option>
+                  <option {{$hemocentro->state == "RO" ? "selected" : ""}} value="RO">Rondônia</option>
+                  <option {{$hemocentro->state == "RR" ? "selected" : ""}} value="RR">Roraima</option>
+                  <option {{$hemocentro->state == "SC" ? "selected" : ""}} value="SC">Santa Catarina</option>
+                  <option {{$hemocentro->state == "SP" ? "selected" : ""}} value="SP">São Paulo</option>
+                  <option {{$hemocentro->state == "SE" ? "selected" : ""}} value="SE">Sergipe</option>
+                  <option {{$hemocentro->state == "TO" ? "selected" : ""}} value="TO">Tocantins</option>
             </select>
+            @if($errors->has('state'))
+                <span class="text-input-error">
+                    <strong>{{$errors->first('state')}}</strong>
+                </span>
+            @endif
           </div>
             <div class="form-group">
             <label for="exampleInputPassword1">Telefone</label>
-            <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Insira o telefone do hemocentro">
+            <input type="text" class="form-control" name="phone" placeholder="Insira o telefone do hemocentro" value="{{$hemocentro->phone}}">
+            @if($errors->has('phone'))
+                <span class="text-input-error">
+                    <strong>{{$errors->first('phone')}}</strong>
+                </span>
+            @endif
           </div>
       </div>
-        
+      <div class="box-footer">
+        <button type="submit" class="btn btn-primary">Alterar</button>
+      </div>
     </form>
   </div>  
 </div>
 
-    <div class="box-footer">
-      <button type="submit" class="btn btn-primary">Alterar</button>
-    </div>
+    
 </section>
 
 <!--

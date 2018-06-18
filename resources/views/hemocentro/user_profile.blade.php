@@ -23,21 +23,20 @@ Painel de Controle do Hemocentro
       <!-- general form elements -->
       <div class="box box-primary">
 
-                <!-- form start -->
-      <form role="form">
+      <!-- form start -->
+      <form role="form" method="POST" action="{{ route('hemocentro.user.profile.edit')}}">
         <div class="box-body">
-
           <div class="form-group">
-            <label for="exampleInputEmail1">Nome</label>
-            <input type="text" class="form-control" id="exampleInputHemocentro1" placeholder="Insira o nome do usuario responsavel">
+            <label for="exampleInputEmail1">Nome</label>            
+            <input type="text" class="form-control" name="name"  placeholder="Insira o nome do usuario responsavel" value="{{$user->name}}">
           </div>
           <div class="form-group" >
             <label for="exampleInputEmail1">E-mail</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Insira um email">
+            <input type="email" class="form-control" name="email"  placeholder="Insira um email" value="{{$user->email}}">
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Senha</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Insira a senha do usuario responsavel">
+            <input type="password" class="form-control" name="password_hemocentro" placeholder="Insira a Nova Senha Se For Necessario altera-lo">
           </div>
 
       </div>                  

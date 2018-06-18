@@ -17,6 +17,14 @@ Painel de Controle do Hemocentro
     <div class="box">
       <div class="box-header with-border">
         <h3 class="box-title"> Gerencimaento de campanhas</h3>
+          <div>
+            <a class="btn btn-primary" href="{{route('hemocentro.campaigns.Cadastrar')}}" role="button">
+                Publicar Campanha
+            </a>
+          </div> 
+         
+        </a>  
+
       </div>
       <!--formulario usuarios -->
       <div>
@@ -32,40 +40,21 @@ Painel de Controle do Hemocentro
        </tr>
   </thead>
   <tbody>
-
+      @foreach($campanhas as $campanha)  
       <tr>
-          <td>1001</td>
-          <td>Salva Anápolis</td>
-          <td>19/02/2018</td>
+          <td>{{$campanha->id}}</td>
+          <td>{{$campanha->titulo}}</td>
+          <td>{{$campanha->created_at}}</td>
           <td class="actions">
               <a class="btn btn-warning btn-xs" href="alterar_campanha.html">Editar</a>
               <a class="btn btn-danger btn-xs"  data-toggle="modal" data-target="#delete-modal">Excluir</a>
           </td>
       </tr>
-
-      <tr>
-          <td>1002</td>
-          <td>Anápolis Consciente</td>
-          <td>20/03/2018</td>
-          <td class="actions">
-              <a class="btn btn-warning btn-xs" href="alterar_campanha.html">Editar</a>
-              <a class="btn btn-danger btn-xs"  href="#" data-toggle="modal" data-target="#delete-modal">Excluir</a>
-          </td>
-      </tr>
-
-      <tr>
-          <td>1003</td>
-          <td>Anápolis Solidário</td>
-          <td>15/04/2018</td>
-          <td class="actions">
-              <a class="btn btn-warning btn-xs" href="alterar_campanha.html">Editar</a>
-              <a class="btn btn-danger btn-xs"  href="#" data-toggle="modal" data-target="#delete-modal">Excluir</a>
-          </td>
-      </tr>
-
+    @endforeach
+      
   </tbody>
 </table>
-
+<h1>{{$hemocentro->email}}</h1>
 </div>
     <div class="box-footer"></div>
 </section>

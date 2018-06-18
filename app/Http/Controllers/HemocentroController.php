@@ -32,6 +32,7 @@ class HemocentroController extends Controller
 
     public function edit(Request $request)
     {
+        
         $request->validate([
             'name' => 'required|string',
             'state' => 'required|string',
@@ -42,7 +43,7 @@ class HemocentroController extends Controller
         ]);
         
         $hemocentro = Hemocentro::where('user', Auth::id())->first();
-
+       
         if($hemocentro->id != $request->id){
             return back()->with('alert_layout', 'alert-danger')->with('alert_message', 'Sem permissão para alterar os dados deste hemocentro.');
         }
@@ -55,7 +56,8 @@ class HemocentroController extends Controller
         $hemocentro->address = $request->address;
         $hemocentro->save();
 
-        return redirect()->route('hemocentro.dashboard')->with('alert_layout', 'alert-danger')->with('alert_message', 'Sem permissão para alterar os dados deste hemocentro.');
+        
+        return redirect()->route('hemocentro.dashboard')->with('alert_layout', 'alert-success')->with('alert_message', 'Dados alterados com Sucesso!');
     }
 
     
