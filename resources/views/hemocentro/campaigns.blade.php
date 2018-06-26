@@ -16,9 +16,9 @@ Painel de Controle do Hemocentro
   <div class="col-md-12">
     <div class="box">
       <div class="box-header with-border">
-        <h3 class="box-title"> Gerencimaento de campanhas</h3>
+
           <div>
-            <a class="btn btn-primary" href="{{route('hemocentro.campaigns.Cadastrar')}}" role="button">
+            <a class="btn btn-primary" href="{{route('hemocentro.campaigns.new')}}" role="button">
                 Publicar Campanha
             </a>
           </div> 
@@ -46,7 +46,7 @@ Painel de Controle do Hemocentro
           <td>{{$campanha->titulo}}</td>
           <td>{{$campanha->created_at}}</td>
           <td class="actions">
-              <a class="btn btn-warning btn-xs" href="alterar_campanha.html">Editar</a>
+              <a class="btn btn-warning btn-xs" href="{{route('hemocentro.campaigns.edit', ['id' => $campanha->id])}}">Editar</a>
               <a class="btn btn-danger btn-xs"  data-toggle="modal" data-target="#delete-modal">Excluir</a>
           </td>
       </tr>
@@ -54,7 +54,7 @@ Painel de Controle do Hemocentro
       
   </tbody>
 </table>
-<h1>{{$hemocentro->email}}</h1>
+<h1></h1>
 </div>
     <div class="box-footer"></div>
 </section>

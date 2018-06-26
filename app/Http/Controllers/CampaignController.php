@@ -31,22 +31,60 @@ class CampaignController extends Controller
         $campanhas = Campanha::where('hemocentro', $hemocentro->id)->get();
 
         return view('hemocentro.campaigns', ['campanhas'=>$campanhas]);
-        return view('hemocentro.campaigns', ['hemocentro'=>$hemocentro]);
     }
 
-    public function index1()
+    public function new()
     {
-        //$hemocentro = Hemocentro::where('user', Auth::id())->first();
-        return view('hemocentro.campaigns_new');
+        $tpsangue = array(
+            array("id" => "A+", "selected" => false),
+            array("id" => "A-", "selected" => false),
+            array("id" => "B+", "selected" => false),
+            array("id" => "B-", "selected" => false),
+            array("id" => "AB+", "selected" => false),
+            array("id" => "AB-", "selected" => false),
+            array("id" => "O+", "selected" => false),
+            array("id" => "O-", "selected" => false),
+        );
+        
+        return view('hemocentro.campaigns_form', ['action' => 'new', 'tipo_sangue' => $tpsangue]);
     }
-    public function create(Request $request)
+
+    public function edit($id)
     {
-        //$hemocentro = Hemocentro::where('hemocentro', Auth::id())->first();
+        $hemocentro = Hemocentro::where('user', Auth::id())->first();
+        $campanha = Campanha::FindOrFail($id);
+        $tipos_sangue = CampanhaTipoSangue::where('campanha', $campanha->id)->get();
+
+        $tpsangue = array(
+            array("id" => "A+", "selected" => false),
+            array("id" => "A-", "selected" => false),
+            array("id" => "B+", "selected" => false),
+            array("id" => "B-", "selected" => false),
+            array("id" => "AB+", "selected" => false),
+            array("id" => "AB-", "selected" => false),
+            array("id" => "O+", "selected" => false),
+            array("id" => "O-", "selected" => false),
+        );
+
+        foreach($tipos_sangue as $tpsg){
+
+            for($a = 0; $a < count($tpsangue); $a++){
+                if($tpsg->tipoSang == $tpsangue[$a]['id']){
+                    $tpsangue[$a]['selected'] = true;
+                    break;
+                }
+            }
+        }
+
+        return view('hemocentro.campaigns_form', ['action' => 'edit', 'campanha' => $campanha, 'tipo_sangue' => $tpsangue]);
+    }
+
+    public function insert(Request $request)
+    {
         $request->validate([
             'titulo' => 'required|string',
             'texto' => 'required|string',
             'tipoSang' => 'required|array',
-           
         ]);
 
         $hemocentro = Hemocentro::where('user', Auth::id())->first();
@@ -57,7 +95,6 @@ class CampaignController extends Controller
         $campanha->hemocentro = $hemocentro->id;
         $campanha ->save();
         
-
         foreach($request->tipoSang as $tipoSangue){
             $campanhaTipoSangue = new CampanhaTipoSangue();
             $campanhaTipoSangue->tipoSang = $tipoSangue;
@@ -65,38 +102,32 @@ class CampaignController extends Controller
             $campanhaTipoSangue->save();           
         }
 
-      
-       
-        return view('hemocentro.campaigns');
+        return redirect()->route('hemocentro.campaigns')->with('alert_layout', 'alert-success')->with('alert_message', 'Campanha Publicada.');
     }
 
-    
 
-    public function edit(Request $request)
+    public function update(Request $request)
     {
-        
         $request->validate([
-            'name' => 'required|string',
-            'state' => 'required|string',
-            'email' => 'required|string',
-            'city' => 'required|string',
-            'address' => 'required|string',
-            'phone' => 'required|numeric'
+            'titulo' => 'required|string',
+            'texto' => 'required|string',
+            'tipoSang' => 'required|array',
         ]);
-        
-        $hemocentro = Hemocentro::where('user', Auth::id())->first();
-       
-        if($hemocentro->id != $request->id){
-            return back()->with('alert_layout', 'alert-danger')->with('alert_message', 'Sem permissão para alterar os dados deste hemocentro.');
-        }
 
-        $hemocentro->name = $request->name;
-        $hemocentro->email = $request->email;
-        $hemocentro->phone = $request->phone;
-        $hemocentro->state = $request->state;
-        $hemocentro->city = $request->city;
-        $hemocentro->address = $request->address;
-        $hemocentro->save();
+        $hemocentro = Hemocentro::where('user', Auth::id())->first();
+
+        $campanha = new Campanha();
+        $campanha->titulo = $request->titulo;
+        $campanha->texto = $request->texto;
+        $campanha->hemocentro = $hemocentro->id;
+        $campanha ->save();
+        
+        foreach($request->tipoSang as $tipoSangue){
+            $campanhaTipoSangue = new CampanhaTipoSangue();
+            $campanhaTipoSangue->tipoSang = $tipoSangue;
+            $campanhaTipoSangue->campanha = $campanha->id;
+            $campanhaTipoSangue->save();           
+        }
 
         
         return redirect()->route('hemocentro.dashboard')->with('alert_layout', 'alert-success')->with('alert_message', 'Dados alterados com Sucesso!');

@@ -27,9 +27,10 @@ Route::prefix('/hemocentro/')->name('hemocentro.')->group(function () {
     Route::post('user/profile/edit', 'UserController@edit')->name('user.profile.edit');
 
     Route::get('campaigns', 'CampaignController@index')->name('campaigns');
-    Route::get('campaigns/cadastrar', 'CampaignController@index1')->name('campaigns.Cadastrar');
-    Route::post('campaigns/create', 'CampaignController@create')->name('campaigns.create');
-    Route::post('campaigns/edit', 'CampaignController@edit')->name('campaigns.edit');
+    Route::get('campaigns/new', 'CampaignController@new')->name('campaigns.new');
+    Route::post('campaigns/insert', 'CampaignController@insert')->name('campaigns.insert');
+    Route::get('campaigns/edit/{id}', 'CampaignController@edit')->name('campaigns.edit');
+    Route::post('campaigns/update', 'CampaignController@update')->name('campaigns.update');
 
     Route::get('donations.register', 'DonationController@register')->name('donations.register');
 });

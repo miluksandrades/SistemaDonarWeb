@@ -16,9 +16,9 @@ Painel de Controle do Hemocentro
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>150</h3>
+              <h3>8</h3>
 
-              <p>Novas Doadores</p>
+              <p>Novos Doadores</p>
             </div>
             <div class="icon">
               <i class="ion ion-bag"></i>
@@ -28,7 +28,7 @@ Painel de Controle do Hemocentro
         <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
           <!-- small box -->
-          <div class="small-box bg-green">
+          <div class="small-box bg-aqua">
             <div class="inner">
               <h3>53<sup style="font-size: 20px">%</sup></h3>
 
@@ -58,7 +58,7 @@ Painel de Controle do Hemocentro
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>65</h3>
+              <h3>3</h3>
 
               <p>Campanhas Ativas</p>
             </div>
